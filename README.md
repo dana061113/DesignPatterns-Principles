@@ -1,13 +1,94 @@
-# Design Patterns – SOLID Principles
+# SOLID Principles – Module 04
 
-## Module 04 – Design Principles
+Курс: Шаблоны проектирования приложений  
+Тақырып: Модуль 04 – Принципы проектирования  
 
-This repository contains examples of SOLID principles implemented in C#.
+Бұл репозиторийде SOLID принциптерінің негізгі төртеуі
+(C#, қарапайым мысалдармен) жүзеге асырылған.
 
-### Implemented principles:
-- Single Responsibility Principle (SRP)
-- Open-Closed Principle (OCP)
-- Interface Segregation Principle (ISP)
-- Dependency Inversion Principle (DIP)
+---
 
-Each principle is implemented in a separate folder with a clear example.
+## 1. Single Responsibility Principle (SRP)
+
+Бұл принцип бойынша бір класс тек бір ғана жауапкершілікке ие болуы керек.
+
+Бастапқы мысалда `Order` класы бірден бірнеше жұмысты атқарды:
+- заказ деректерін сақтау
+- бағаны есептеу
+- төлемді өңдеу
+- хабарлама жіберу
+
+Бұл SRP принципін бұзады.
+
+Шешім ретінде:
+- `Order` – тек заказ деректерін сақтайды
+- `PriceCalculator` – бағаны есептейді
+- `PaymentProcessor` – төлемді өңдейді
+- `OrderNotification` – email жібереді
+
+Нәтижесінде код түсінікті және икемді болды.
+
+---
+
+## 2. Open–Closed Principle (OCP)
+
+Бұл принцип бойынша класс:
+- өзгеріске жабық
+- кеңейтуге ашық болуы керек
+
+Бастапқы мысалда жалақы `if-else` арқылы есептелді.
+Жаңа қызметкер қосу үшін кодты өзгерту қажет болды.
+
+Шешім ретінде:
+- `Employee` абстракт класы жасалды
+- Әр қызметкер өз жалақысын өзі есептейді
+(`PermanentEmployee`, `ContractEmployee`, `InternEmployee`)
+
+Жаңа қызметкер қосу үшін жаңа класс жазу жеткілікті,
+ескі код өзгермейді.
+
+---
+
+## 3. Interface Segregation Principle (ISP)
+
+Бұл принцип бойынша класс өзіне қажет емес методтарды
+іске асыруға мәжбүр болмауы керек.
+
+Бастапқы мысалда `BasicPrinter` факс пен сканерді қолдамаса да,
+сол методтарды жазуға мәжбүр болды.
+
+Шешім ретінде интерфейс бірнеше кіші интерфейске бөлінді:
+- `IPrinter`
+- `IScanner`
+- `IFax`
+
+Енді әр класс тек өзіне қажетті интерфейсті қолданады.
+
+---
+
+## 4. Dependency Inversion Principle (DIP)
+
+Бұл принцип бойынша жоғары деңгейлі модульдер
+нақты класстарға емес, интерфейске тәуелді болуы керек.
+
+Бастапқы мысалда `NotificationService`
+`EmailSender` және `SmsSender` класстарына тікелей тәуелді болды.
+
+Шешім ретінде:
+- `IMessageSender` интерфейсі енгізілді
+- `NotificationService` интерфейс арқылы жұмыс істейді
+
+Бұл жаңа хабарлама түрлерін қосуды жеңілдетеді.
+
+---
+
+## Қорытынды
+
+Бұл жобада SOLID принциптері:
+- SRP
+- OCP
+- ISP
+- DIP
+
+жеке файлдарда, қарапайым және түсінікті түрде жүзеге асырылды.
+Код кеңейтуге ыңғайлы және жобалау принциптеріне сай.
